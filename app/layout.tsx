@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
+import { CartProvider } from "@/context/CartContext";
+import { CartDrawer } from "@/components/CartDrawer";
 import "./globals.css";
 
 const inter = Inter({
@@ -49,8 +51,11 @@ export default function RootLayout({
             suppressHydrationWarning
         >
             <body className="font-sans antialiased" suppressHydrationWarning>
-                {children}
-                {process.env.NODE_ENV === "production" && <Analytics />}
+                <CartProvider>
+                    {children}
+                    <CartDrawer />
+                    {process.env.NODE_ENV === "production" && <Analytics />}
+                </CartProvider>
             </body>
         </html>
     );

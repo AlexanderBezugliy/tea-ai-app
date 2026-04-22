@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import {
     Thermometer,
@@ -108,44 +109,47 @@ export function BrewingGuide() {
                 {/* Temperature Reference */}
                 <div className="mt-16">
                     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-                        {[
-                            {
-                                type: "Green Tea",
-                                temp: "70-80°C",
-                                time: "2-3 min",
-                                color: "green" as const,
-                                amount: "3g",
-                                vessel: "Glassware",
-                                notes: "Refreshing & Vegetal",
-                            },
-                            {
-                                type: "White Tea",
-                                temp: "75-85°C",
-                                time: "3-4 min",
-                                color: "blue" as const,
-                                amount: "4g",
-                                vessel: "Ceramic",
-                                notes: "Floral & Delicate",
-                            },
-                            {
-                                type: "Oolong Tea",
-                                temp: "85-90°C",
-                                time: "3-4 min",
-                                color: "orange" as const,
-                                amount: "5g",
-                                vessel: "Gaiwan",
-                                notes: "Complex & Orchid",
-                            },
-                            {
-                                type: "Black Tea",
-                                temp: "90-95°C",
-                                time: "3-5 min",
-                                color: "purple" as const,
-                                amount: "3g",
-                                vessel: "Yixing Clay",
-                                notes: "Malty & Robust",
-                            },
-                        ].map((item, index) => (
+                        {useMemo(
+                            () => [
+                                {
+                                    type: "Green Tea",
+                                    temp: "70-80°C",
+                                    time: "2-3 min",
+                                    color: "green" as const,
+                                    amount: "3g",
+                                    vessel: "Glassware",
+                                    notes: "Refreshing & Vegetal",
+                                },
+                                {
+                                    type: "White Tea",
+                                    temp: "75-85°C",
+                                    time: "3-4 min",
+                                    color: "blue" as const,
+                                    amount: "4g",
+                                    vessel: "Ceramic",
+                                    notes: "Floral & Delicate",
+                                },
+                                {
+                                    type: "Oolong Tea",
+                                    temp: "85-90°C",
+                                    time: "3-4 min",
+                                    color: "orange" as const,
+                                    amount: "5g",
+                                    vessel: "Gaiwan",
+                                    notes: "Complex & Orchid",
+                                },
+                                {
+                                    type: "Black Tea",
+                                    temp: "90-95°C",
+                                    time: "3-5 min",
+                                    color: "purple" as const,
+                                    amount: "3g",
+                                    vessel: "Yixing Clay",
+                                    notes: "Malty & Robust",
+                                },
+                            ],
+                            [],
+                        ).map((item, index) => (
                             <motion.div
                                 key={item.type}
                                 initial={{ opacity: 0, scale: 0.9 }}

@@ -1,43 +1,53 @@
-"use client"
+"use client";
 
-import { Canvas, useFrame } from "@react-three/fiber"
-import { useMemo, useRef } from "react"
-import * as THREE from "three"
+import { Canvas, useFrame } from "@react-three/fiber";
+import { useInView } from "framer-motion";
+import { useMemo, useRef } from "react";
+import * as THREE from "three";
 
 interface ShaderBackgroundProps {
-  color1?: string
-  color2?: string
-  speed?: number
+    color1?: string;
+    color2?: string;
+    speed?: number;
 }
 
-function ShaderPlane({ color1 = "#D4AF37", color2 = "#000000", speed = 0.3 }: ShaderBackgroundProps) {
-  const meshRef = useRef<THREE.Mesh>(null)
-  
-  const uniforms = useMemo(
-    () => ({
-      uTime: { value: 0 },
-      uColor1: { value: new THREE.Color(color1) },
-      uColor2: { value: new THREE.Color(color2) },
-    }),
-    [color1, color2]
-  )
+interface ShaderPlaneProps extends ShaderBackgroundProps {
+    isInView: boolean;
+}
 
-  useFrame((state) => {
-    if (meshRef.current) {
-      const material = meshRef.current.material as THREE.ShaderMaterial
-      material.uniforms.uTime.value = state.clock.elapsedTime * speed
-    }
-  })
+function ShaderPlane({
+    color1 = "#D4AF37",
+    color2 = "#000000",
+    speed = 0.3,
+    isInView,
+}: ShaderPlaneProps) {
+    const meshRef = useRef<THREE.Mesh>(null);
 
-  const vertexShader = `
+    const uniforms = useMemo(
+        () => ({
+            uTime: { value: 0 },
+            uColor1: { value: new THREE.Color(color1) },
+            uColor2: { value: new THREE.Color(color2) },
+        }),
+        [color1, color2],
+    );
+
+    useFrame((state) => {
+        if (meshRef.current && isInView) {
+            const material = meshRef.current.material as THREE.ShaderMaterial;
+            material.uniforms.uTime.value = state.clock.elapsedTime * speed;
+        }
+    });
+
+    const vertexShader = `
     varying vec2 vUv;
     void main() {
       vUv = uv;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
-  `
+  `;
 
-  const fragmentShader = `
+    const fragmentShader = `
     uniform float uTime;
     uniform vec3 uColor1;
     uniform vec3 uColor2;
@@ -100,30 +110,38 @@ function ShaderPlane({ color1 = "#D4AF37", color2 = "#000000", speed = 0.3 }: Sh
       
       gl_FragColor = vec4(color, 1.0);
     }
-  `
+  `;
 
-  return (
-    <mesh ref={meshRef}>
-      <planeGeometry args={[10, 10]} />
-      <shaderMaterial
-        uniforms={uniforms}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-      />
-    </mesh>
-  )
+    return (
+        <mesh ref={meshRef}>
+            <planeGeometry args={[10, 10]} />
+            <shaderMaterial
+                uniforms={uniforms}
+                vertexShader={vertexShader}
+                fragmentShader={fragmentShader}
+            />
+        </mesh>
+    );
 }
 
-export function ShaderBackground({ 
-  color1 = "#D4AF37", 
-  color2 = "#000000",
-  speed = 0.3 
+export function ShaderBackground({
+    color1 = "#D4AF37",
+    color2 = "#000000",
+    speed = 0.3,
 }: ShaderBackgroundProps) {
-  return (
-    <div className="absolute inset-0 -z-10">
-      <Canvas camera={{ position: [0, 0, 5] }}>
-        <ShaderPlane color1={color1} color2={color2} speed={speed} />
-      </Canvas>
-    </div>
-  )
+    const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef);
+
+    return (
+        <div ref={containerRef} className="absolute inset-0 -z-10">
+            <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5] }}>
+                <ShaderPlane
+                    color1={color1}
+                    color2={color2}
+                    speed={speed}
+                    isInView={isInView}
+                />
+            </Canvas>
+        </div>
+    );
 }

@@ -94,11 +94,13 @@ export function FeaturedProduct() {
             />
 
             {/* Main Image */}
-            <div className="relative h-full w-full overflow-hidden bg-secondary">
+            <div className="relative h-full w-full overflow-hidden bg-secondary group">
               <motion.img
                 src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?q=80&w=2070&auto=format&fit=crop"
                 alt="Premium Darjeeling First Flush Tea"
-                className="h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 initial={{ scale: 1.2 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}

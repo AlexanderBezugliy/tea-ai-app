@@ -30,6 +30,8 @@ export function Heritage() {
                         <img
                             src="https://images.unsplash.com/photo-1582793988951-9aed5509eb97?q=80&w=2070&auto=format&fit=crop"
                             alt="Tea plantation at dawn"
+                            loading="lazy"
+                            decoding="async"
                             className="h-full w-full object-cover grayscale-[20%] brightness-[0.85]"
                             draggable={false}
                         />

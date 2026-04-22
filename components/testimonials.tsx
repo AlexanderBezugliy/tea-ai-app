@@ -160,6 +160,8 @@ export function Testimonials() {
                 transition={{ delay: 0.2 }}
                 src={testimonials[currentIndex].image}
                 alt={testimonials[currentIndex].name}
+                loading="lazy"
+                decoding="async"
                 className="h-14 w-14 rounded-full object-cover ring-2 ring-primary/20"
               />
               <div className="text-left">
