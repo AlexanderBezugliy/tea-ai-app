@@ -33,10 +33,10 @@ function ShaderPlane({
     );
 
     useFrame((state) => {
-        if (meshRef.current && isInView) {
-            const material = meshRef.current.material as THREE.ShaderMaterial;
-            material.uniforms.uTime.value = state.clock.elapsedTime * speed;
-        }
+        if (!isInView || !meshRef.current) return;
+
+        const material = meshRef.current.material as THREE.ShaderMaterial;
+        material.uniforms.uTime.value = state.clock.elapsedTime * speed;
     });
 
     const vertexShader = `
@@ -134,7 +134,11 @@ export function ShaderBackground({
 
     return (
         <div ref={containerRef} className="absolute inset-0 -z-10">
-            <Canvas dpr={[1, 1.5]} camera={{ position: [0, 0, 5] }}>
+            <Canvas
+                dpr={[1, 2]}
+                camera={{ position: [0, 0, 5] }}
+                gl={{ antialias: false, powerPreference: "high-performance" }}
+            >
                 <ShaderPlane
                     color1={color1}
                     color2={color2}

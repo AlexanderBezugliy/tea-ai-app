@@ -128,6 +128,8 @@ export function ProductRevealCard({
                 <motion.img
                     src={image}
                     alt={name}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover"
                     variants={imageVariants}
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}

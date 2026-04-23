@@ -22,7 +22,7 @@ export function Hero() {
       {/* Parallax Background Image */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?q=80&w=2121&auto=format&fit=crop"
+          src="/images/hero.jpg"
           alt="Premium tea cup with steam rising"
           className="h-full w-full object-cover mix-blend-overlay opacity-40"
         />

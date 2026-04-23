@@ -25,7 +25,10 @@ export function Navigation() {
     const { cartCount, toggleCart } = useCart();
 
     useMotionValueEvent(scrollY, "change", (latest) => {
-        setIsScrolled(latest > 50);
+        const scrolled = latest > 50;
+        if (scrolled !== isScrolled) {
+            setIsScrolled(scrolled);
+        }
     });
 
     return (
@@ -52,7 +55,7 @@ export function Navigation() {
                             className="font-serif text-xl font-light tracking-tight text-foreground md:text-2xl"
                             style={{ fontFamily: "var(--font-playfair)" }}
                         >
-                            Élysée Tea
+                            T.E.A
                         </span>
                     </motion.a>
 
@@ -78,13 +81,13 @@ export function Navigation() {
 
                     {/* Desktop Actions */}
                     <div className="hidden items-center gap-6 md:flex">
-                        <motion.button
+                        {/* <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
                             className="p-2 text-muted-foreground transition-colors duration-300 hover:text-foreground"
                         >
                             <Search className="h-5 w-5" strokeWidth={1.5} />
-                        </motion.button>
+                        </motion.button> */}
                         <motion.button
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
@@ -140,6 +143,20 @@ export function Navigation() {
                             exit={{ opacity: 0 }}
                             className="flex h-full flex-col items-center justify-center gap-8"
                         >
+                            <motion.a
+                                href="#"
+                                className="relative z-10"
+                                whileHover={{ scale: 1.02 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                <span
+                                    className="font-serif font-bold tracking-tight text-foreground text-6xl md:text-2xl"
+                                    style={{ fontFamily: "var(--font-playfair)" }}
+                                >
+                                    T.E.A
+                                </span>
+                            </motion.a>
+
                             {navLinks.map((link, index) => (
                                 <motion.a
                                     key={link.name}
@@ -166,12 +183,12 @@ export function Navigation() {
                                 transition={{ delay: 0.5 }}
                                 className="mt-8 flex gap-8"
                             >
-                                <button className="p-4">
+                                {/* <button className="p-4">
                                     <Search
                                         className="h-6 w-6 text-muted-foreground"
                                         strokeWidth={1.5}
                                     />
-                                </button>
+                                </button> */}
                                 <button
                                     className="relative p-4"
                                     onClick={() => {
@@ -180,7 +197,7 @@ export function Navigation() {
                                     }}
                                 >
                                     <ShoppingBag
-                                        className="h-6 w-6 text-muted-foreground"
+                                        className="h-10 w-10 text-muted-foreground"
                                         strokeWidth={1.5}
                                     />
                                     {cartCount > 0 && (

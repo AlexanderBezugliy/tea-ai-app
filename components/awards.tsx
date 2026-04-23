@@ -119,8 +119,9 @@ export function Awards() {
                                 {/* Animated Corner Accents */}
                                 <motion.div
                                     className="absolute left-0 top-0 h-8 w-px bg-primary"
-                                    initial={{ height: 0 }}
-                                    animate={isInView ? { height: 32 } : {}}
+                                    initial={{ scaleY: 0 }}
+                                    animate={isInView ? { scaleY: 1 } : {}}
+                                    style={{ transformOrigin: "top" }}
                                     transition={{
                                         duration: 0.4,
                                         delay: 0.5 + index * 0.1,
@@ -128,8 +129,9 @@ export function Awards() {
                                 />
                                 <motion.div
                                     className="absolute left-0 top-0 h-px w-8 bg-primary"
-                                    initial={{ width: 0 }}
-                                    animate={isInView ? { width: 32 } : {}}
+                                    initial={{ scaleX: 0 }}
+                                    animate={isInView ? { scaleX: 1 } : {}}
+                                    style={{ transformOrigin: "left" }}
                                     transition={{
                                         duration: 0.4,
                                         delay: 0.5 + index * 0.1,
@@ -137,8 +139,9 @@ export function Awards() {
                                 />
                                 <motion.div
                                     className="absolute bottom-0 right-0 h-8 w-px bg-primary"
-                                    initial={{ height: 0 }}
-                                    animate={isInView ? { height: 32 } : {}}
+                                    initial={{ scaleY: 0 }}
+                                    animate={isInView ? { scaleY: 1 } : {}}
+                                    style={{ transformOrigin: "bottom" }}
                                     transition={{
                                         duration: 0.4,
                                         delay: 0.5 + index * 0.1,
@@ -146,8 +149,9 @@ export function Awards() {
                                 />
                                 <motion.div
                                     className="absolute bottom-0 right-0 h-px w-8 bg-primary"
-                                    initial={{ width: 0 }}
-                                    animate={isInView ? { width: 32 } : {}}
+                                    initial={{ scaleX: 0 }}
+                                    animate={isInView ? { scaleX: 1 } : {}}
+                                    style={{ transformOrigin: "right" }}
                                     transition={{
                                         duration: 0.4,
                                         delay: 0.5 + index * 0.1,
