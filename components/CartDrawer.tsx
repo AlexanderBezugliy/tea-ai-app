@@ -211,7 +211,7 @@ export function CartDrawer() {
                                         </span>
                                     </div>
                                 </div>
-                                <Button className="group h-14 w-full rounded-full bg-primary font-sans text-sm uppercase tracking-[0.2em] text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98]">
+                                <Button className="group h-14 w-full rounded-full bg-primary font-sans text-sm uppercase tracking-[0.2em] text-white transition-all hover:scale-[1.02] active:scale-[0.98]">
                                     Checkout
                                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </Button>

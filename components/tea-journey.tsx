@@ -134,7 +134,7 @@ export function TeaJourney() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.3 }}
                   >
-                    <span className="font-sans text-[10px] font-medium text-primary-foreground">
+                    <span className="font-sans text-[10px] font-medium text-white">
                       {index + 1}
                     </span>
                   </motion.div>

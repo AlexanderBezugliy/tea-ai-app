@@ -74,7 +74,7 @@ export function Hero() {
         >
           <a
             href="#collection"
-            className="group inline-flex items-center gap-3 border border-primary/30 bg-primary/5 px-8 py-4 font-sans text-sm uppercase tracking-[0.2em] text-primary transition-all duration-500 hover:border-primary hover:bg-primary hover:text-primary-foreground"
+            className="group inline-flex items-center gap-3 border border-primary/30 bg-primary/5 px-8 py-4 font-sans text-sm uppercase tracking-[0.2em] text-primary transition-all duration-500 hover:border-primary hover:bg-primary hover:text-white"
           >
             Explore Collection
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>

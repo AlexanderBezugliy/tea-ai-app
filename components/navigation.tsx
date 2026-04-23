@@ -96,7 +96,7 @@ export function Navigation() {
                                 strokeWidth={1.5}
                             />
                             {cartCount > 0 && (
-                                <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
+                                <span className="absolute right-0 top-0 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-white">
                                     {cartCount}
                                 </span>
                             )}
@@ -184,7 +184,7 @@ export function Navigation() {
                                         strokeWidth={1.5}
                                     />
                                     {cartCount > 0 && (
-                                        <span className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-primary-foreground">
+                                        <span className="absolute right-2 top-2 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] text-white">
                                             {cartCount}
                                         </span>
                                     )}

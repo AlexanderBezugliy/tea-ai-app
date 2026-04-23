@@ -53,9 +53,9 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
             <DialogContent className="max-w-[95vw] h-[90vh] md:h-[750px] lg:h-[800px] overflow-hidden border-white/10 bg-zinc-950/90 p-0 text-foreground backdrop-blur-xl sm:max-w-[90vw] lg:max-w-7xl sm:rounded-3xl gap-0">
                 <DialogTitle className="sr-only">{product.name}</DialogTitle>
 
-                <div className="flex flex-col md:flex-row h-full w-full">
+                <div className="flex flex-col md:flex-row h-full w-full overflow-hidden">
                     {/* Image Column */}
-                    <div className="relative h-[40vh] md:h-full md:w-1/2 overflow-hidden bg-zinc-900">
+                    <div className="relative h-[35%] md:h-full md:w-1/2 shrink-0 overflow-hidden bg-zinc-900">
                         <motion.img
                             initial={{ scale: 1.1, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
@@ -71,8 +71,8 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                     </div>
 
                     {/* Details Column */}
-                    <div className="flex flex-col h-[50vh] md:h-full md:w-1/2 bg-zinc-950/50">
-                        <div className="flex-1 overflow-y-auto custom-scrollbar p-8 md:p-12 lg:p-20 pb-4">
+                    <div className="flex flex-col h-[65%] md:h-full md:w-1/2 bg-zinc-950/50 overflow-hidden">
+                        <div className="flex-1 overflow-y-auto custom-scrollbar p-6 md:p-12 lg:p-20 pb-4">
                             <div className="min-h-full flex flex-col justify-center py-4">
                                 <motion.div
                                     initial={{ y: 20, opacity: 0 }}
@@ -136,12 +136,12 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                             initial={{ y: 20, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ delay: 0.4, duration: 0.5 }}
-                            className="p-8 md:p-12 lg:p-16 pt-4 border-t border-white/5 bg-zinc-950/80 backdrop-blur-md"
+                            className="p-6 md:p-12 lg:p-16 pt-2 pb-6 border-t border-white/5 bg-zinc-950/80 backdrop-blur-md shrink-0"
                         >
                             <Button
                                 onClick={handleAddToCart}
                                 disabled={isAdding}
-                                className="group relative h-14 w-full overflow-hidden rounded-full bg-primary font-sans text-sm uppercase tracking-[0.2em] text-primary-foreground transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-100"
+                                className="group relative h-14 w-full overflow-hidden rounded-full bg-primary font-sans text-sm uppercase tracking-[0.2em] text-white transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-100"
                             >
                                 <div className="absolute inset-0 bg-white/10 opacity-0 transition-opacity group-hover:opacity-100" />
                                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2),transparent_70%)] opacity-0 blur-xl transition-opacity group-hover:opacity-100" />

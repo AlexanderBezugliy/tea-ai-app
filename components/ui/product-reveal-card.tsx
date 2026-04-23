@@ -1,9 +1,8 @@
 "use client";
 
 import { motion, useReducedMotion, Variants } from "framer-motion";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { ShoppingCart, Star, Heart } from "lucide-react";
-import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { ShoppingCart, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ProductRevealCardProps {
@@ -16,7 +15,6 @@ interface ProductRevealCardProps {
     reviewCount?: number;
     onAdd?: () => void;
     onViewDetails?: () => void;
-    onFavorite?: () => void;
     enableAnimations?: boolean;
     className?: string;
 }
@@ -31,19 +29,11 @@ export function ProductRevealCard({
     reviewCount = 124,
     onAdd,
     onViewDetails,
-    onFavorite,
     enableAnimations = true,
     className,
 }: ProductRevealCardProps) {
-    const [isFavorite, setIsFavorite] = useState(false);
     const shouldReduceMotion = useReducedMotion();
     const shouldAnimate = enableAnimations && !shouldReduceMotion;
-
-    const handleFavorite = (e: React.MouseEvent) => {
-        e.stopPropagation();
-        setIsFavorite(!isFavorite);
-        onFavorite?.();
-    };
 
     const containerVariants: Variants = {
         rest: {
@@ -120,18 +110,6 @@ export function ProductRevealCard({
         tap: shouldAnimate ? { scale: 0.98 } : {},
     };
 
-    const favoriteVariants: Variants = {
-        rest: { scale: 1, rotate: 0 },
-        favorite: {
-            scale: [1, 1.2, 1],
-            rotate: [0, 10, -10, 0],
-            transition: {
-                duration: 0.4,
-                ease: "easeInOut",
-            },
-        },
-    };
-
     return (
         <motion.div
             data-slot="product-reveal-card"
@@ -155,23 +133,6 @@ export function ProductRevealCard({
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent" />
-
-                {/* Favorite Button */}
-                <motion.button
-                    onClick={handleFavorite}
-                    variants={favoriteVariants}
-                    animate={isFavorite ? "favorite" : "rest"}
-                    className={cn(
-                        "absolute top-4 right-4 z-20 p-2.5 rounded-full backdrop-blur-md border border-white/10 transition-colors",
-                        isFavorite
-                            ? "bg-primary text-primary-foreground border-primary/50"
-                            : "bg-black/20 text-white hover:bg-black/40",
-                    )}
-                >
-                    <Heart
-                        className={cn("w-4 h-4", isFavorite && "fill-current")}
-                    />
-                </motion.button>
 
                 {/* Price Tag (Floating) */}
                 <div className="absolute bottom-4 left-4 z-10">
@@ -253,7 +214,7 @@ export function ProductRevealCard({
                                     e.stopPropagation();
                                     onAdd?.();
                                 }}
-                                className="w-full h-12 rounded-full bg-primary text-primary-foreground hover:bg-primary/90 font-sans text-xs uppercase tracking-[0.2em]"
+                                className="w-full h-12 rounded-full bg-primary text-white hover:bg-primary/90 font-sans text-xs uppercase tracking-[0.2em]"
                             >
                                 <ShoppingCart className="w-4 h-4 mr-2" />
                                 Add to Basket
@@ -272,7 +233,7 @@ export function ProductRevealCard({
                                     e.stopPropagation();
                                     onViewDetails?.();
                                 }}
-                                className="w-full h-12 rounded-full border-border bg-secondary/50 hover:bg-secondary text-foreground font-sans text-xs uppercase tracking-[0.2em]"
+                                className="w-full h-12 rounded-full border-border bg-secondary/50 hover:bg-secondary/50 hover:text-[#d1a74c] text-foreground font-sans text-xs uppercase tracking-[0.2em] transition-colors duration-300"
                             >
                                 View Details
                             </Button>

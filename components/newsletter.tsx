@@ -90,7 +90,7 @@ export function Newsletter() {
                 disabled={status !== "idle"}
                 whileHover={{ scale: status === "idle" ? 1.02 : 1 }}
                 whileTap={{ scale: status === "idle" ? 0.98 : 1 }}
-                className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary px-6 py-2 font-sans text-xs uppercase tracking-[0.15em] text-primary-foreground transition-all duration-300 hover:bg-primary/90 disabled:opacity-100"
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-primary px-6 py-2 font-sans text-xs uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-primary/90 disabled:opacity-100"
               >
                 {status === "idle" && (
                   <span className="flex items-center gap-2">
